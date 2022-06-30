@@ -73,3 +73,11 @@ Route::post('/dataPersonal/update/', 'App\Http\Controllers\api\v1\DataPersonalCo
 Route::get('/dataPersonal', 'App\Http\Controllers\api\v1\DataPersonalController@index');
 Route::get('/dataPersonal/{id?}', 'App\Http\Controllers\api\v1\DataPersonalController@show');
 Route::delete('/dataPersonal/{id?}', 'App\Http\Controllers\api\v1\DataPersonalController@destroy');
+
+
+//Formulir input
+Route::get('/formulir', [App\Http\Controllers\api\v1\FormulirController::class, 'index']);
+Route::post('/formulir/add', [App\Http\Controllers\api\v1\FormulirController::class, 'store']);
+Route::get('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'show']);
+Route::post('/formulir/update', [App\Http\Controllers\api\v1\FormulirController::class, 'update']);
+Route::delete('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'destroy']);
