@@ -101,7 +101,7 @@ class KelurahanController extends Controller
 
         } else {
 
-            $post = Kelurahan::where('id_kelurahan', $request->input('id'))->update([
+            $post = Kelurahan::where('id_kelurahan', $request->input('id_kelurahan'))->update([
                 'nama'   => $request->input('nama'),
             ]);
 

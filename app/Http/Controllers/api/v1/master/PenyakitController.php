@@ -101,7 +101,7 @@ class PenyakitController extends Controller
 
         } else {
 
-            $post = Penyakit::where('id_penyakit', $request->input('id'))->update([
+            $post = Penyakit::where('id_penyakit', $request->input('id_penyakit'))->update([
                 'nama'   => $request->input('nama'),
             ]);
 

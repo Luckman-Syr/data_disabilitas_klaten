@@ -106,7 +106,7 @@ class KecamatanController extends Controller
 
         } else {
 
-            $post = Kecamatan::where('id_kecamatan', $request->input('id'))->update([
+            $post = Kecamatan::where('id_kecamatan', $request->input('id_kecamatan'))->update([
                 'nama'   => $request->input('nama'),
             ]);
 

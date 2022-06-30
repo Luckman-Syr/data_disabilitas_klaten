@@ -101,7 +101,7 @@ class DisabilitasController extends Controller
 
         } else {
 
-            $post = Disabilitas::where('id_disabilitas', $request->input('id'))->update([
+            $post = Disabilitas::where('id_disabilitas', $request->input('id_disabilitas'))->update([
                 'nama'   => $request->input('nama'),
             ]);
 

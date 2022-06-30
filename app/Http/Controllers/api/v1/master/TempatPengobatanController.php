@@ -101,7 +101,7 @@ class TempatPengobatanController extends Controller
 
         } else {
 
-            $post = TempatPengobatan::where('id_tempat', $request->input('id'))->update([
+            $post = TempatPengobatan::where('id_tempat', $request->input('id_tempat'))->update([
                 'nama'   => $request->input('nama'),
             ]);
 

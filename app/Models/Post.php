@@ -13,9 +13,8 @@ class Post extends Model
 
     use HasFactory;
 
-    protected $table = 'log_users';
-
-    protected $fillable = [
-        'title', 'content_update'
-    ];
+        protected $table = 'log_users';
+        protected $fillable = [
+            'title', 'content_update'
+        ];
 }
