@@ -63,9 +63,15 @@ Route::delete('/posts/{id?}', 'App\Http\Controllers\api\v1\PostsController@destr
 Route::get('/posts', 'App\Http\Controllers\api\v1\PostsController@index');
 Route::get('/posts/{id?}', 'App\Http\Controllers\api\v1\PostsController@show');
 
-//FORMULIR
-// Route::post('/formulir', 'App\Http\Controllers\api\v1\FormulirController@store');
-// Route::get('/formulir', 'App\Http\Controllers\api\v1\FormulirController@index');
+//Formulir 
+Route::get('/formulir', [App\Http\Controllers\api\v1\FormulirController::class, 'index']);
+Route::post('/formulir/add', [App\Http\Controllers\api\v1\FormulirController::class, 'store']);
+Route::get('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'show']);
+Route::post('/formulir/update', [App\Http\Controllers\api\v1\FormulirController::class, 'update']);
+Route::delete('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'destroy']);
+Route::post('/formulir/updateFormulir/', 'App\Http\Controllers\api\v1\FormulirController@updateFormulir');
+Route::post('/formulir/updateEkonomi/', 'App\Http\Controllers\api\v1\FormulirController@updateEkonomi');
+Route::post('/formulir/updateKondisiRumah/', 'App\Http\Controllers\api\v1\FormulirController@updateKondisiRumah');
 
 //DATA PERSONAL
 Route::post('/dataPersonal', 'App\Http\Controllers\api\v1\DataPersonalController@store');
@@ -74,10 +80,10 @@ Route::get('/dataPersonal', 'App\Http\Controllers\api\v1\DataPersonalController@
 Route::get('/dataPersonal/{id?}', 'App\Http\Controllers\api\v1\DataPersonalController@show');
 Route::delete('/dataPersonal/{id?}', 'App\Http\Controllers\api\v1\DataPersonalController@destroy');
 
-
-//Formulir input
-Route::get('/formulir', [App\Http\Controllers\api\v1\FormulirController::class, 'index']);
-Route::post('/formulir/add', [App\Http\Controllers\api\v1\FormulirController::class, 'store']);
-Route::get('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'show']);
-Route::post('/formulir/update', [App\Http\Controllers\api\v1\FormulirController::class, 'update']);
-Route::delete('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'destroy']);
+//B. DISABILITAS
+Route::post('/disabilitas', 'App\Http\Controllers\api\v1\BDisabilitasController@store');
+Route::post('/disabilitas/update/', 'App\Http\Controllers\api\v1\BDisabilitasController@update');
+Route::get('/disabilitas', 'App\Http\Controllers\api\v1\BDisabilitasController@index');
+Route::get('/disabilitas/{id?}', 'App\Http\Controllers\api\v1\BDisabilitasController@show');
+Route::delete('/disabilitas/{id?}', 'App\Http\Controllers\api\v1\BDisabilitasController@destroy');
+Route::delete('/disabilitas/byFormulir/{id?}', 'App\Http\Controllers\api\v1\BDisabilitasController@destroyByFormulir');

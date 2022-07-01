@@ -23,13 +23,14 @@ class FormulirController extends Controller
             'data' => $posts
         ], 200);
     }
+
     public function store(Request $request)
     {
         //validate data
         $validator = Validator::make(
             $request->all(),
             [
-                'no_formulir' => 'required',
+                'id_formulir' => 'required',
                 'id_kecamatan' => 'required',
                 'tanggal_pendataan' => 'required',
                 'petugas_pendataan' => 'required',
@@ -81,7 +82,7 @@ class FormulirController extends Controller
                 'bantuan_lainnya' => 'required'
             ],
             [
-                'no_formulir.required' => 'Masukkan id Post !',
+                'id_formulir.required' => 'Masukkan id Post !',
             ]
         );
 
@@ -95,7 +96,7 @@ class FormulirController extends Controller
         } else {
 
             $post = Formulir::create([
-                'no_formulir' => $request->input('no_formulir'),
+                'id_formulir' => $request->input('id_formulir'),
                 'id_kecamatan' => $request->input('id_kecamatan'),
                 'tanggal_pendataan' => $request->input('tanggal_pendataan'),
                 'petugas_pendataan' => $request->input('petugas_pendataan'),
@@ -167,7 +168,7 @@ class FormulirController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'no_formulir' => 'required',
+                'id_formulir' => 'required',
                 'id_kecamatan' => 'required',
                 'tanggal_pendataan' => 'required',
                 'petugas_pendataan' => 'required',
@@ -219,7 +220,7 @@ class FormulirController extends Controller
                 'bantuan_lainnya' => 'required'
             ],
             [
-                'no_formulir.required' => 'Masukkan no formulir',
+                'id_formulir.required' => 'Masukkan no formulir',
             ]
         );
 
@@ -232,7 +233,7 @@ class FormulirController extends Controller
             ], 401);
         } else {
 
-            $post = Formulir::where('no_formulir', $request->input('id'))->update([
+            $post = Formulir::where('id_formulir', $request->input('id'))->update([
                 'id_kecamatan' => $request->input('id_kecamatan'),
                 'tanggal_pendataan' => $request->input('tanggal_pendataan'),
                 'petugas_pendataan' => $request->input('petugas_pendataan'),
@@ -300,7 +301,7 @@ class FormulirController extends Controller
 
     public function destroy($id)
     {
-        $post = Formulir::where('no_formulir', $id);
+        $post = Formulir::where('id_formulir', $id);
         $post->delete();
 
         if ($post) {
@@ -318,7 +319,7 @@ class FormulirController extends Controller
 
     public function show($id)
     {
-        $get = Formulir::where('no_formulir', $id)->first();
+        $get = Formulir::where('id_formulir', $id)->first();
 
         if ($get) {
             return response()->json([
@@ -332,6 +333,172 @@ class FormulirController extends Controller
                 'message' => 'Data Formulir Tidak Ditemukan!',
                 'data'    => ''
             ], 401);
+        }
+    }
+
+    public function updateFormulir(Request $request)
+    {
+        //validate data
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_personal' => 'required',
+                'id_kecamatan' => 'required',
+                'tanggal_pendataan' => 'required',
+                'petugas_pendataan' => 'required',
+                'instansi' => 'required',
+                'no_telepon' => 'required',
+                'catatan' => 'required',
+                'foto' => 'required',
+                'petugas_verifikasi' => 'required',
+                'tanggal_verifikasi' => 'required',
+                'tahun' => 'required',
+            ],
+            [
+            ]
+        );
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Silahkan Isi Bidang Yang Kosong',
+                'data'    => $validator->errors()
+            ], 401);
+        } else {
+
+            $post = Formulir::where('id_personal', $request->input('id_personal'))->update([
+                'id_kecamatan' => $request->input('id_kecamatan'),
+                'tanggal_pendataan' => $request->input('tanggal_pendataan'),
+                'petugas_pendataan' => $request->input('petugas_pendataan'),
+                'instansi' => $request->input('instansi'),
+                'no_telepon' => $request->input('no_telepon'),
+                'catatan' => $request->input('catatan'),
+                'foto' => $request->input('foto'),
+                'petugas_verifikasi' => $request->input('petugas_verifikasi'),
+                'tanggal_verifikasi' => $request->input('tanggal_verifikasi'),
+                'tahun' => $request->input('tahun'),
+            ]);
+
+            if ($post) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data Berhasil Diupdate!',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data Gagal Diupdate!',
+                ], 401);
+            }
+        }
+    }
+
+    public function updateEkonomi(Request $request)
+    {
+        //validate data
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_personal' => 'required',
+                'pekerjaan' => 'required',
+                'jenis_pekerjaan' => 'required',
+                'alasan_tdk_bekerja' => 'required',
+                'pendapatan' => 'required',
+                'pengeluaran' => 'required',
+                'pendapatan_lain' => 'required',
+                'jml_pendapatan_lain' => 'required',
+                'minat_kerja' => 'required',
+                'keterampilan' => 'required',
+                'pelatihan_diikuti' => 'required',
+                'pelatihan_diminati' => 'required',
+            ],
+        );
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Silahkan Isi Bidang Yang Kosong',
+                'data'    => $validator->errors()
+            ], 401);
+        } else {
+
+            $post = Formulir::where('id_personal', $request->input('id_personal'))->update([
+                'pekerjaan' => $request->input('pekerjaan'),
+                'jenis_pekerjaan' => $request->input('jenis_pekerjaan'),
+                'alasan_tdk_bekerja' => $request->input('alasan_tdk_bekerja'),
+                'pendapatan' => $request->input('pendapatan'),
+                'pengeluaran' => $request->input('pengeluaran'),
+                'pendapatan_lain' => $request->input('pendapatan_lain'),
+                'jml_pendapatan_lain' => $request->input('jml_pendapatan_lain'),
+                'minat_kerja' => $request->input('minat_kerja'),
+                'keterampilan' => $request->input('keterampilan'),
+                'pelatihan_diikuti' => $request->input('pelatihan_diikuti'),
+                'pelatihan_diminati' => $request->input('pelatihan_diminati'),
+            ]);
+
+            if ($post) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data Berhasil Diupdate!',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data Gagal Diupdate!',
+                ], 401);
+            }
+        }
+    }
+
+    public function updateKondisiRumah(Request $request)
+    {
+        //validate data
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'status_rumah' => 'required',
+                'lantai' => 'required',
+                'kamar_mandi' => 'required',
+                'akses_rumah' => 'required',
+                'dinding' => 'required',
+                'sumber_air' => 'required',
+                'penerangan' => 'required',
+                'id_personal' => 'required',
+            ],
+        );
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Silahkan Isi Bidang Yang Kosong',
+                'data'    => $validator->errors()
+            ], 401);
+        } else {
+
+            $post = Formulir::where('id_personal', $request->input('id_personal'))->update([
+                'status_rumah' => $request->input('status_rumah'),
+                'lantai' => $request->input('lantai'),
+                'kamar_mandi' => $request->input('kamar_mandi'),
+                'akses_rumah' => $request->input('akses_rumah'),
+                'dinding' => $request->input('dinding'),
+                'sumber_air' => $request->input('sumber_air'),
+                'penerangan' => $request->input('penerangan'),
+            ]);
+
+            if ($post) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data Berhasil Diupdate!',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data Gagal Diupdate!',
+                ], 401);
+            }
         }
     }
 }
