@@ -37,6 +37,7 @@ class DataPersonalController extends Controller
             'keterangan_keluarga'   => 'required',
             'alamat_lengkap'   => 'required',
             'gender'   => 'required',
+            'id_formulir' => 'required',
         ],
         );
 
@@ -65,6 +66,7 @@ class DataPersonalController extends Controller
                 'keterangan_keluarga'   => $request->input('keterangan_keluarga'),
                 'alamat_lengkap'   => $request->input('alamat_lengkap'),
                 'gender'   => $request->input('gender'),
+                'id_formulir'     => $request->input('id_formulir'),
             ]);
 
             if ($post) {
@@ -83,7 +85,7 @@ class DataPersonalController extends Controller
 
     public function show($id)
     {
-        $get = DataPersonal::where('id_personal' , $id)->first();
+        $get = DataPersonal::where('id_formulir' , $id)->first();
 
         if ($get) {
             return response()->json([
@@ -104,6 +106,7 @@ class DataPersonalController extends Controller
     {
         //validate data
         $validator = Validator::make($request->all(), [
+            'id_formulir' => 'required',
             'nama'     => 'required',
             'tempat_tgl_lahir'   => 'required',
             'status'   => 'required',
@@ -132,7 +135,7 @@ class DataPersonalController extends Controller
 
         } else {
 
-            $post = DataPersonal::where('id_personal', $request->input('id_personal'))->update([
+            $post = DataPersonal::where('id_formulir', $request->input('id_formulir'))->update([
                 'nama'     => $request->input('nama'),
                 'tempat_tgl_lahir'   => $request->input('tempat_tgl_lahir'),
                 'status'   => $request->input('status'),
@@ -167,7 +170,7 @@ class DataPersonalController extends Controller
 
     public function destroy($id)
     {
-        $post = DataPersonal::where('id_personal', $id);
+        $post = DataPersonal::where('id_formulir', $id);
         $post->delete();
 
         if ($post) {
