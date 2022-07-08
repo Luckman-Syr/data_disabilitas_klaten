@@ -63,10 +63,10 @@ Route::delete('/master/penyakit/{id?}', 'App\Http\Controllers\api\v1\master\Peny
 // Route::get('/posts', 'App\Http\Controllers\api\v1\PostsController@index');
 // Route::get('/posts/{id?}', 'App\Http\Controllers\api\v1\PostsController@show');
 
-//Formulir 
+//Formulir
 Route::get('/formulir', [App\Http\Controllers\api\v1\FormulirController::class, 'index']);
-Route::post('/formulir/add', [App\Http\Controllers\api\v1\FormulirController::class, 'store']);
 Route::get('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'show']);
+Route::post('/formulir', [App\Http\Controllers\api\v1\FormulirController::class, 'store']);
 Route::post('/formulir/update', [App\Http\Controllers\api\v1\FormulirController::class, 'update']);
 Route::delete('/formulir/{id?}', [App\Http\Controllers\api\v1\FormulirController::class, 'destroy']);
 Route::post('/formulir/updateFormulir/', 'App\Http\Controllers\api\v1\FormulirController@updateFormulir');

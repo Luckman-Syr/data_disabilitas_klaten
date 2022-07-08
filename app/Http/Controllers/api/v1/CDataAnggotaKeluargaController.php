@@ -18,7 +18,7 @@ class CDataAnggotaKeluargaController extends Controller
             'data' => $posts
         ], 200);
     }
-    
+
     public function store(Request $request)
     {
         //validate data
@@ -32,7 +32,7 @@ class CDataAnggotaKeluargaController extends Controller
             'pekerjaan'     => 'required',
             'penghasilan'     => 'required',
             'hubungan_difabel'     => 'required',
-            'keteragan'     => 'required',
+            'keterangan'     => 'required',
         ],
         );
 
@@ -56,7 +56,7 @@ class CDataAnggotaKeluargaController extends Controller
                 'pekerjaan'     => $request->input('pekerjaan'),
                 'penghasilan'     => $request->input('penghasilan'),
                 'hubungan_difabel'     => $request->input('hubungan_difabel'),
-                'keteragan'     => $request->input('keteragan'),
+                'keterangan'     => $request->input('keteragan'),
             ]);
 
             if ($post) {
@@ -106,7 +106,7 @@ class CDataAnggotaKeluargaController extends Controller
             'pekerjaan'     => 'required',
             'penghasilan'     => 'required',
             'hubungan_difabel'     => 'required',
-            'keteragan'     => 'required',
+            'keterangan'     => 'required',
         ],
         );
 
@@ -130,7 +130,7 @@ class CDataAnggotaKeluargaController extends Controller
                 'pekerjaan'     => $request->input('pekerjaan'),
                 'penghasilan'     => $request->input('penghasilan'),
                 'hubungan_difabel'     => $request->input('hubungan_difabel'),
-                'keteragan'     => $request->input('keteragan'),
+                'keterangan'     => $request->input('keteragan'),
             ]);
 
             if ($post) {

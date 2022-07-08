@@ -15,6 +15,6 @@ class CDataAnggotaKeluarga extends Model
         'id_formulir','no_kk','nama',
         'nik','jenis_kelamin','tanggal_lahir',
         'pekerjaan','penghasilan','hubungan_difabel',
-        'keteragan',
+        'keterangan',
     ];
 }
