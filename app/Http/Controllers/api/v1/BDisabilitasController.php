@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class BDisabilitasController extends Controller
 {
+
+/**
+ * @OA\Get(
+ *     path="/api/disabilitas",
+ *     tags={"Disabilitas"},
+ *     summary="Tampilkan Data Disabilitas",
+ *     @OA\Response(response="200", description="Display a listing of projects.")
+ * )
+ **/
+
     public function index()
     {
         $posts = BDisabilitas::first()->get();
@@ -18,6 +28,151 @@ class BDisabilitasController extends Controller
             'data' => $posts
         ], 200);
     }
+
+/**
+     * @OA\Post(
+     ** path="/api/disabilitas",
+     *   tags={"Disabilitas"},
+     *   summary="Tambah Data Disabilitas",
+     *   operationId="disabilitas",
+     *
+     *  @OA\Parameter(
+     *      name="id_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="id_formulir",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *       name="id_tempat",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="ket_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="penyebab_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="diagnosa_sekarang",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="penyakit_lain",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="tempat_pengobatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="pembantu_pngobatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="kemampuan_sehari_hari",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="kesulitan_sekarang",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="alat_bantu",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="jaminan_kesehatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="jaminan_sosial",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+**/
 
     public function store(Request $request)
     {
@@ -80,7 +235,22 @@ class BDisabilitasController extends Controller
             }
         }
     }
-
+/**
+ * @OA\Get(
+ *     path="/api/disabilitas/{id}",
+ *     tags={"Disabilitas"},
+ *     summary="Tampilkan Data Disabilitas Seseorang by ID",
+ *     @OA\Parameter(
+ *          name="id_b_disabilitas",
+ *          in="query",
+ *          required=true,
+ *          @OA\Schema(
+ *              type="integer"
+ *          )
+ *      ),
+ *     @OA\Response(response="200", description="Display a listing of projects.")
+ * )
+ **/
     public function show($id)
     {
         $get = BDisabilitas::where('id_personal' , $id)->first();
@@ -99,7 +269,157 @@ class BDisabilitasController extends Controller
             ], 401);
         }
     }
-
+/**
+     * @OA\Post(
+     ** path="/api/disabilitas/update",
+     *   tags={"Disabilitas"},
+     *   summary="Update Data Disabilitas",
+     *
+     *  @OA\Parameter(
+     *      name="id_b_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="id_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="id_formulir",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *       name="id_tempat",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="ket_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="penyebab_disabilitas",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="diagnosa_sekarang",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="penyakit_lain",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="tempat_pengobatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="pembantu_pngobatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="kemampuan_sehari_hari",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="kesulitan_sekarang",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="alat_bantu",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="jaminan_kesehatan",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *      @OA\Parameter(
+     *      name="jaminan_sosial",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+**/
     public function update(Request $request)
     {
         //validate data
@@ -163,7 +483,22 @@ class BDisabilitasController extends Controller
         }
 
     }
-
+/**
+ * @OA\Delete(
+ *     path="/api/disabilitas/{id}",
+ *     tags={"Disabilitas"},
+ *     summary="Hapus Data Disabilitas",
+ *     @OA\Parameter(
+ *          name="id_b_disabilitas",
+ *          in="query",
+ *          required=true,
+ *          @OA\Schema(
+ *              type="integer"
+ *          )
+ *      ),
+ *     @OA\Response(response="200", description="Data Disabilitas Berhasil Dihapus.")
+ * )
+ **/
     public function destroy($id)
     {
         $post = BDisabilitas::where('id_b_disabilitas', $id);
@@ -172,12 +507,12 @@ class BDisabilitasController extends Controller
         if ($post) {
             return response()->json([
                 'success' => true,
-                'message' => 'Data Personal Berhasil Dihapus!',
+                'message' => 'Data Disabilitas Berhasil Dihapus!',
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Data Personal Gagal Dihapus!',
+                'message' => 'Data Disabilitas Gagal Dihapus!',
             ], 400);
         }
 

@@ -13,7 +13,7 @@ class Formulir extends Model
     protected $table = 'formulir';
     protected $fillable = [
         //'id_formulir',
-        'id_kecamatan', 'tanggal_pendataan', 'petugas_pendataan', 'instansi', 'no_telpon', 'catatan', 'foto', 'petugas_verifikasi', 'tanggal_verifikasi', 'tahun',
+        'id_kecamatan', 'tanggal_pendataan', 'petugas_pendataan', 'instansi', 'no_telepon', 'catatan', 'foto', 'petugas_verifikasi', 'tanggal_verifikasi', 'tahun',
         'pekerjaan', 'jenis_pekerjaan', 'alasan_tdk_bekerja', 'pendapatan', 'pengeluaran', 'pendapatan_lain', 'jml_pendapatan_lain', 'minat_kerja', 'keterampilan', 'pelatihan_diikuti', 'pelatihan_diminati',
         'status_rumah', 'lantai', 'kamar_mandi', 'akses_rumah', 'dinding', 'sumber_air', 'penerangan',
         'paud', 'tk', 'slb', 'sd_abk', 'smp_abk', 'sma_smk_abk', 'jml_posyandu_desa', 'posyandu_rutin', 'layanan_kesehatan_desa',

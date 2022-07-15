@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class DisabilitasController extends Controller
 {
+    
+/**
+ * @OA\Get(
+ *     path="/api/master/disabilitas",
+ *     tags={"Master"},
+ *     summary="Disabilitas",
+ *     @OA\Response(response="200", description="Display a listing of projects.")
+ * )
+ **/
+    
     public function index()
     {
         $get = Disabilitas::first()->get();

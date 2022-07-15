@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Validator;
 
 class KecamatanController extends Controller
 {
+
+/**
+ * @OA\Get(
+ *     path="/api/master/kecamatan",
+ *     tags={"Master"},
+ *     summary="Kecamatan",
+ *     @OA\Response(response="200", description="Display a listing of projects.")
+ * )
+ **/
+
     public function index()
     {
         $get = Kecamatan::first()->get();

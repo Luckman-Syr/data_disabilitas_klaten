@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class PenyakitController extends Controller
 {
+
+/**
+ * @OA\Get(
+ *     path="/api/master/penyakit",
+ *     tags={"Master"},
+ *     summary="Penyakit",
+ *     @OA\Response(response="200", description="Display a listing of projects.")
+ * )
+ **/
+
     public function index()
     {
         $get = Penyakit::first()->get();
