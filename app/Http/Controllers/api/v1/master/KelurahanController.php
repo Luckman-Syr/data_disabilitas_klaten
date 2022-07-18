@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class KelurahanController extends Controller
 {
 
-/**
- * @OA\Get(
- *     path="/api/master/kelurahan",
- *     tags={"Master"},
- *     summary="Kelurahan",
- *     @OA\Response(response="200", description="Display a listing of projects.")
- * )
- **/
+    /**
+     * @OA\Get(
+     *     path="/api/master/kelurahan",
+     *     tags={"Master"},
+     *     summary="Kelurahan",
+     *     @OA\Response(response="200", description="Display a listing of projects.")
+     * )
+     **/
 
     public function index()
     {
@@ -34,7 +34,7 @@ class KelurahanController extends Controller
      ** path="/api/master/kelurahan",
      *   tags={"Master"},
      *   summary="Tambah Data kelurahan",
-     *   operationId="kelurahan",
+     *   operationId="master_kelurahan",
      *
      *  @OA\Parameter(
      *      name="nama",
@@ -44,29 +44,52 @@ class KelurahanController extends Controller
      *      @OA\Schema(
      *           type="string"
      *      )
+     *   ),     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
      *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
      *)
      **/
 
     public function store(Request $request)
     {
         //validate data
-        $validator = Validator::make($request->all(), [
-            'nama'     => 'required',
-        ],
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nama'     => 'required',
+            ],
             [
                 'nama.required' => 'Masukkan Nama Kecamatan yang akan ditambahkan',
             ]
         );
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
 
             return response()->json([
                 'success' => false,
                 'message' => 'Silahkan Isi Bidang Yang Kosong',
                 'data'    => $validator->errors()
-            ],401);
-
+            ], 401);
         } else {
 
             $post = Kelurahan::create([
@@ -106,7 +129,7 @@ class KelurahanController extends Controller
 
     public function show($id)
     {
-        $post = Kelurahan::where('id_kelurahan' , $id)->first();
+        $post = Kelurahan::where('id_kelurahan', $id)->first();
 
 
         if ($post) {
@@ -129,7 +152,7 @@ class KelurahanController extends Controller
      ** path="/api/master/kelurahan/update",
      *   tags={"Master"},
      *   summary="Update Data kelurahan",
-     *   operationId="kelurahan",
+     *   operationId="master_kelurahan",
      *
      *  @OA\Parameter(
      *      name="nama",
@@ -168,24 +191,25 @@ class KelurahanController extends Controller
     public function update(Request $request)
     {
         //validate data
-        $validator = Validator::make($request->all(), [
-            'nama'     => 'required',
-            'id'     => 'required'
-        ],
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nama'     => 'required',
+                'id'     => 'required'
+            ],
             [
                 'nama.required' => 'Masukkan Nama Kelurahan',
                 'id.required' => 'Masukkan id Kelurahan'
             ]
         );
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
 
             return response()->json([
                 'success' => false,
                 'message' => 'Silahkan Isi Bidang Yang Kosong',
                 'data'    => $validator->errors()
-            ],401);
-
+            ], 401);
         } else {
 
             $post = Kelurahan::where('id_kelurahan', $request->input('id_kelurahan'))->update([
@@ -203,9 +227,7 @@ class KelurahanController extends Controller
                     'message' => 'Nama Kelurahan Gagal Diupdate!',
                 ], 401);
             }
-
         }
-
     }
 
     /**
@@ -241,6 +263,5 @@ class KelurahanController extends Controller
                 'message' => 'Kelurahan Gagal Dihapus!',
             ], 400);
         }
-
     }
 }

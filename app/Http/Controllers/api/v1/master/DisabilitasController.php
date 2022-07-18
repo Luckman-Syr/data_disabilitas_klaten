@@ -34,7 +34,7 @@ class DisabilitasController extends Controller
      ** path="/api/master/disabilitas",
      *   tags={"Master"},
      *   summary="Tambah Data Disabilitas",
-     *   operationId="disabilitas",
+     *   operationId="master_disabilitas",
      *
      *  @OA\Parameter(
      *      name="nama",
@@ -44,7 +44,29 @@ class DisabilitasController extends Controller
      *      @OA\Schema(
      *           type="string"
      *      )
+     *   ),     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
      *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
      *)
      **/
 
@@ -131,7 +153,7 @@ class DisabilitasController extends Controller
      ** path="/api/master/disabilitas/update",
      *   tags={"Master"},
      *   summary="Update Data Disabilitas",
-     *   operationId="disabilitas",
+     *   operationId="master_disabilitas",
      *
      *  @OA\Parameter(
      *      name="nama",

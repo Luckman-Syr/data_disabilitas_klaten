@@ -34,7 +34,7 @@ class PenyakitController extends Controller
      ** path="/api/master/penyakit",
      *   tags={"Master"},
      *   summary="Tambah Data penyakit",
-     *   operationId="penyakit",
+     *   operationId="master_penyakit",
      *
      *  @OA\Parameter(
      *      name="nama",
@@ -44,7 +44,29 @@ class PenyakitController extends Controller
      *      @OA\Schema(
      *           type="string"
      *      )
+     *   ),     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
      *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
      *)
      **/
 
@@ -129,7 +151,7 @@ class PenyakitController extends Controller
      ** path="/api/master/penyakit/update",
      *   tags={"Master"},
      *   summary="Update Data penyakit",
-     *   operationId="penyakit",
+     *   operationId="master_penyakit",
      *
      *  @OA\Parameter(
      *      name="nama",
