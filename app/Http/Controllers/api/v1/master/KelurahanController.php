@@ -29,6 +29,25 @@ class KelurahanController extends Controller
         ], 200);
     }
 
+    /**
+     * @OA\Post(
+     ** path="/api/master/kelurahan",
+     *   tags={"Master"},
+     *   summary="Tambah Data kelurahan",
+     *   operationId="kelurahan",
+     *
+     *  @OA\Parameter(
+     *      name="nama",
+     *      in="query",
+     *      required=true,
+     *      example= "bawen",
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *)
+     **/
+
     public function store(Request $request)
     {
         //validate data
@@ -68,6 +87,23 @@ class KelurahanController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/master/kelurahan/{id}",
+     *     tags={"Master"},
+     *     summary="Tampilkan Data kelurahan Seseorang by ID",
+     *     @OA\Parameter(
+     *          name="id_kelurahan",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="Display a listing of projects.")
+     * )
+     **/
+
     public function show($id)
     {
         $post = Kelurahan::where('id_kelurahan' , $id)->first();
@@ -87,6 +123,47 @@ class KelurahanController extends Controller
             ], 401);
         }
     }
+
+    /**
+     * @OA\Post(
+     ** path="/api/master/kelurahan/update",
+     *   tags={"Master"},
+     *   summary="Update Data kelurahan",
+     *   operationId="kelurahan",
+     *
+     *  @OA\Parameter(
+     *      name="nama",
+     *      in="query",
+     *      required=true,
+     *      example= "Bawen",
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),@OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=401,
+     *       description="Unauthenticated"
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *)
+     **/
 
     public function update(Request $request)
     {
@@ -130,6 +207,23 @@ class KelurahanController extends Controller
         }
 
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/master/kelurahan/{id}",
+     *     tags={"Master"},
+     *     summary="Hapus Data kelurahan",
+     *     @OA\Parameter(
+     *          name="id_kelurahan",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="Data Kelurahan Berhasil Dihapus.")
+     * )
+     **/
 
     public function destroy($id)
     {
